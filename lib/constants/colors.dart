@@ -38,6 +38,8 @@ class Pallete {
 
   static Color primaryColor = Colors.blue;
   static Color secondaryColor = Colors.blue.shade200;
+  static Color transparentt = Colors.transparent;
+
 
   ///////////////TEXT COLOURS//////////////
   static Color lightPrimaryTextColor = Colors.grey.shade800;

@@ -33,5 +33,16 @@ class Assets {
   static String applicationReviewAltAnimation = 'assets/animations/application_review_alt.json';
   static String resetPasswordAnimation = 'icons/password_reset.json';
   static String eezimedzLogo = 'icons/orange.png';
+  static String orangeLogo1 = 'icons/orange1.jpeg';
+  static String orangeLogo2 = 'icons/orange2.jpeg';
+  static String orangeLogo3 = 'icons/orange5.jpeg';
+  static String orangeLogo4 = 'icons/orange4.jpeg';
+
+
+
+
+
+
+
 
 }

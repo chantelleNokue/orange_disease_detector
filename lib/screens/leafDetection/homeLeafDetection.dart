@@ -10,6 +10,7 @@ import 'package:image_picker/image_picker.dart';
 import '../../constants/colors.dart';
 import 'package:http/http.dart' as http;
 
+import '../../utils/asset_utils/assets_util.dart';
 import 'resultLeafDetection.dart';
 
 
@@ -95,7 +96,7 @@ class _HomePageLeafState extends State<HomePageLeaf> {
                 height: MediaQuery.of(context).size.height * 0.2,
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: Pallete.onePrimaryColor.withOpacity(0.1),
                   borderRadius: const BorderRadius.only(
                     // Top right corner
                     bottomLeft: Radius.circular(50.0), // Bottom right corner
@@ -111,7 +112,7 @@ class _HomePageLeafState extends State<HomePageLeaf> {
                     ),
                   ],
                 ),
-                child: Column(
+                child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
@@ -126,7 +127,7 @@ class _HomePageLeafState extends State<HomePageLeaf> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Text(
-                            'OPEN GALLERY',
+                            'Select Image',
                             style: TextStyle(color: Colors.white),
                           ),
                           const SizedBox(width: 10),
@@ -147,7 +148,7 @@ class _HomePageLeafState extends State<HomePageLeaf> {
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Text('CAMERA',
+                          Text('Take Picture',
                               style: TextStyle(color: Colors.white)),
                           const SizedBox(width: 10),
                           Icon(Icons.camera_alt, color: Colors.white)
@@ -163,21 +164,49 @@ class _HomePageLeafState extends State<HomePageLeaf> {
           ),
 
           _selectedImage == null
-              ? Container(
-            height: MediaQuery.of(context).size.height * 0.5,
-            child:  Center(
-              child: Text(
-                'Please select image for  detection',
-                textAlign: TextAlign.center,
-                style: TextStyle(color: Pallete.onePrimaryColor, fontSize: 16, fontWeight: FontWeight.w500),
-                // style: GoogleFonts.poppins(
-                //     color: Pallete.primaryColor,
-                //     fontSize: 16,
-                //     fontWeight: FontWeight.w500
-                // )
-              ),
+              ? Column(
+                children: [
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.5,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            fit: BoxFit.contain,
+                            opacity: 0.6,
+                            alignment: Alignment.topCenter,
+                            image: AssetImage(
+                              Assets.orangeLogo4,
+                            )
+                        )
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                          border: Border.all(
+                              color: Pallete.onePrimaryColor
+                          )
+
+                      ),            child:  Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'Choose an image to analyze and diagnose potential issues with your citrus fruit. Simply select the picture from your gallery or take a new one using your device\'s camera to get started',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: Pallete.onePrimaryColor, fontSize: 16, fontWeight: FontWeight.w500),
+                        // style: GoogleFonts.poppins(
+                        //     color: Pallete.primaryColor,
+                        //     fontSize: 16,
+                        //     fontWeight: FontWeight.w500
+                        // )
+                      ),
+                    ),
             ),
-          )
+          ),
+                  ),
+                ],
+              )
               : Expanded(
             child: Container(
               width: double.infinity,
@@ -221,7 +250,7 @@ class _HomePageLeafState extends State<HomePageLeaf> {
                   print('API Response: $response');
                   String reco = response!['recommendation'] ?? '';
                   String res = response!['result'] ?? '';
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => ResultPage(reccomandation: reco, result: res),));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => ResultPage(reccomandation: reco, result: res, image: _selectedImage),));
                 },
                 child: const Text(
                   'DETECT',

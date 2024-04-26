@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:orange_disease_detector/customeAnimations/fade_in_slide.dart';
 
 import '../constants/colors.dart';
 import '../utils/asset_utils/assets_util.dart';
@@ -38,10 +39,10 @@ class _HomeState extends State<Home> {
           ),
           image: DecorationImage(
               fit: BoxFit.contain,
-              opacity: 0.4,
+              opacity: 0.6,
               alignment: Alignment.topCenter,
               image: AssetImage(
-                  Assets.eezimedzLogo
+                  Assets.orangeLogo2,
               )
           )
       ),
@@ -67,93 +68,139 @@ class _HomeState extends State<Home> {
 
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text(
-                  'Welcome to Orange Disease Detection\nwhere you can detect a disease with a single click',
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.poppins(
-                      color: Pallete.onePrimaryColor,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold
-                  )
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                    border: Border.all(
+                        color: Pallete.onePrimaryColor
+                    )
+
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                      'Welcome to Orange Disease Detection\nStay Ahead of Citrus Troubles: Detect Orange Diseases Effortlessly',
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.poppins(
+                          color: Pallete.onePrimaryColor,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold
+                      )
+                  ),
+                ),
               ),
             ),
           ],
         ),
 
-        bottomNavigationBar: Container(
-          padding: EdgeInsets.all(20),
-          height: 320,
-          child: Column(
-            children: [
-              Text(
-                  "What do you wanna do ?",
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.poppins(
-                      color: Pallete.onePrimaryColor,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold
-                  )
-              ),
+        bottomNavigationBar: FadeInSlide(
+          duration: 1,
+          child: Container(
+            padding: EdgeInsets.all(20),
+            height: 320,
+            child: Column(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                      border: Border.all(
+                          color: Pallete.onePrimaryColor
+                      )
 
-              Text(
-                  "Please choose how you'd like to use our app",
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.poppins(
-                    color: Pallete.onePrimaryColor,
-                    fontSize: 12,
-                  )
-              ),
-
-              SizedBox(
-                height: 140,
-              ),
-              Column(
-                children: [
-                  Row(
-                    children: [
-                      Expanded(
-                        child: roleWidget(
-                            onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) =>HomePageLeaf())),
-                            color:   Pallete.onePrimaryColor,
-                            textIconColour:  Colors.white ,
-                            center: "Detect",
-                            bottom: "Leaf",
-                            icon: Icons.library_books
-                        ),
-                      ),
-
-                      SizedBox(
-                        width: 8,
-                      ),
-
-                      Expanded(
-                        child: roleWidget(
-                            onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) =>HomePage())),
-                            color:   Pallete.onePrimaryColor,
-                            textIconColour:  Colors.white ,
-                            center: "Detect",
-                            bottom: "Fruit",
-                            icon: Icons.library_books
-                        ),
-                      ),
-                    ],
                   ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        Text(
+                            "Time to decide: Select your next move",
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.poppins(
+                                color: Pallete.onePrimaryColor,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold
+                            )
+                        ),
 
-                  SizedBox(
-                    height: 8,
+                        Text(
+                            "Choose what you want to do with out app",
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.poppins(
+                              color: Pallete.onePrimaryColor,
+                              fontSize: 12,
+                            )
+                        ),
+                      ],
+                    ),
                   ),
-
-
-                ],
-              ),
-
-              SizedBox(
-                height: 12,
-              ),
+                ),
 
 
 
-            ],
+                SizedBox(
+                  height: 60,
+                ),
+                Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(width: 20,),
+                        Container(
+                          width: 180,
+                          child: roleWidget(
+                              onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) =>HomePageLeaf())),
+                              color:   Colors.transparent,
+                              textIconColour:  Colors.black38,
+                              center: "Detect",
+                              bottom: "Leaf",
+                              icon: Icons.library_books
+                          ),
+                        ),
+
+
+
+
+                      ],
+                    ),
+                    SizedBox(
+                      height: 8,
+                    ),
+
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(width: 20,),
+                        Container(
+                          width: 180,
+                          child: roleWidget(
+                              onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) =>HomePage())),
+                              color:  Colors.transparent,
+                              textIconColour:  Colors.black38 ,
+                              center: "Detect",
+                              bottom: "Fruit",
+                              icon: Icons.library_books
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    SizedBox(
+                      height: 8,
+                    ),
+
+
+                  ],
+                ),
+
+                SizedBox(
+                  height: 12,
+                ),
+
+
+
+              ],
+            ),
           ),
         ),
       ),
@@ -165,10 +212,10 @@ class _HomeState extends State<Home> {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: EdgeInsets.all(16),
+        padding: EdgeInsets.all(8),
         decoration: BoxDecoration(
             color: color,
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(30),
             border: Border.all(
                 color: Pallete.onePrimaryColor
             )
